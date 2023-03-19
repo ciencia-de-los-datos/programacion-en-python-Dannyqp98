@@ -35,10 +35,10 @@ def pregunta_01():
     import csv
 
     with open(r".\data.csv", 'r') as file:
-    csvreader = csv.reader(file,delimiter='\t')
-    data=[]    
-    for row in csvreader:
-      data.append(row)
+      csvreader = csv.reader(file,delimiter='\t')
+      data=[]    
+      for row in csvreader:
+        data.append(row)
   
     file.close()
   
