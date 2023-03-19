@@ -14,25 +14,8 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 #Primer LAB
+
 import csv
-
-with open(".\data.csv", 'r') as file:
-  csvreader = csv.reader(file,delimiter='\t')
-  data=[]    
-  for row in csvreader:
-      data.append(row)
-  
-file.close()
-
-def pregunta_01():
-    """
-    Retorne la suma de la segunda columna.
-
-    Rta/
-    214
-
-    """
-    import csv
 
     with open("\data.csv", 'r') as file:
       csvreader = csv.reader(file,delimiter='\t')
@@ -41,6 +24,16 @@ def pregunta_01():
         data.append(row)
   
     file.close()
+  
+def pregunta_01():
+    """
+    Retorne la suma de la segunda columna.
+
+    Rta/
+    214
+
+    """
+    
   
   
     suma=0
