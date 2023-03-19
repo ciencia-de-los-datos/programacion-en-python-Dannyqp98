@@ -17,10 +17,10 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 import csv
 
-    with open("\data.csv", 'r') as file:
-      csvreader = csv.reader(file,delimiter='\t')
-      data=[]    
-      for row in csvreader:
+with open("\data.csv", 'r') as file:
+    csvreader = csv.reader(file,delimiter='\t')
+    data=[]    
+    for row in csvreader:
         data.append(row)
   
     file.close()
