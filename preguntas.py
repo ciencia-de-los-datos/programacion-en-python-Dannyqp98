@@ -12,6 +12,8 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+
+#Primer LAB
 import csv
 
 with open(r".\data.csv", 'r') as file:
