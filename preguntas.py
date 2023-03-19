@@ -12,6 +12,15 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+import csv
+
+with open(r".\data.csv", 'r') as file:
+  csvreader = csv.reader(file,delimiter='\t')
+  data=[]    
+  for row in csvreader:
+      data.append(row)
+  
+file.close()
 
 def pregunta_01():
     """
@@ -21,7 +30,13 @@ def pregunta_01():
     214
 
     """
-    return
+    suma=0
+    for lista in data:
+        for number in lista[1]:
+            suma=int(number)+suma
+            
+        
+    return suma
 
 
 def pregunta_02():
@@ -39,7 +54,25 @@ def pregunta_02():
     ]
 
     """
-    return
+    letter_list=[]
+    
+    for lista in data:
+        for letter in lista[0]:
+            letter_list.append(letter)
+        
+    letter_list.sort()
+    
+    letter_set=set(letter_list)
+    unique_list=(list(letter_set))
+    unique_list.sort()
+    
+    tupple_list=[]
+    for letter in unique_list:
+        tupple=(letter,letter_list.count(letter))
+        tupple_list.append(tupple)
+        
+    
+    return tupple_list
 
 
 def pregunta_03():
@@ -57,7 +90,33 @@ def pregunta_03():
     ]
 
     """
-    return
+ 
+
+    list_alf_num=[]
+    for lista in data:
+        row=[]
+        for element in lista[0:2]:
+            row.append(element)
+        
+        list_alf_num.append(row)
+            
+            
+    list_alf_num.sort()
+    letter=list_alf_num[0][0]
+    suma=0 
+    list_tupla=[]
+    for lista in list_alf_num:
+        if letter!=lista[0]:
+            list_tupla.append((letter,suma))
+            suma=0 
+            letter=lista[0]
+            
+        suma=suma+int(lista[1])
+        
+    list_tupla.append((letter,suma))     
+   
+    
+    return list_tupla
 
 
 def pregunta_04():
@@ -82,7 +141,29 @@ def pregunta_04():
     ]
 
     """
-    return
+    list_meses=[]
+    for lista in data:
+        date=lista[2]
+        mes=date[5:7]
+        list_meses.append(mes)
+    
+    list_meses.sort()
+    
+    mes=list_meses[0]
+    suma=0 
+    list_tupla=[]
+    for lista in list_meses:
+        if mes!=lista:
+            list_tupla.append((mes,suma))
+            suma=0 
+            mes=lista
+            
+        suma=suma+1
+        
+    list_tupla.append((mes,suma))     
+   
+    
+    return list_tupla
 
 
 def pregunta_05():
@@ -100,7 +181,44 @@ def pregunta_05():
     ]
 
     """
-    return
+    list_val=[]
+    for lista in data:
+        list_val.append([lista[0],lista[1]])
+    
+    list_val.sort()
+    
+    letter=list_val[0][0]
+    list_tupla=[]
+    mini=0
+    maxi=0
+    control_init=0
+    for lista in list_val:
+        if letter!=lista[0]:
+            list_tupla.append((letter,maxi,mini))
+            mini=int(lista[1])
+            maxi=int(lista[1])
+            letter=lista[0]
+        
+        if control_init==0:
+            mini=int(lista[1])
+            
+        
+        if maxi<int(lista[1]):
+            maxi=int(lista[1])
+        
+        if mini>int(lista[1]) :
+            mini=int(lista[1])
+        
+        control_init=control_init+1
+            
+            
+    list_tupla.append((letter,maxi,mini))
+            
+       
+        
+ 
+        
+    return list_tupla
 
 
 def pregunta_06():
@@ -125,7 +243,51 @@ def pregunta_06():
     ]
 
     """
-    return
+    
+    dict_list=[]
+    
+    for lista in data:
+        crrt_lista=lista[4].split(',')
+        for element in crrt_lista:
+            dict_list.append(element.split(':'))
+     
+    dict_list.sort()
+    key=dict_list[0][0]
+    
+    
+    list_tupla=[]
+    mini=0
+    maxi=0
+    control_init=0
+    for lista in dict_list:
+        if key!=lista[0]:
+            list_tupla.append((key,mini,maxi))
+            mini=int(lista[1])
+            maxi=int(lista[1])
+            key=lista[0]
+        
+        if control_init==0:
+            mini=int(lista[1])
+            
+        
+        if maxi<int(lista[1]):
+            maxi=int(lista[1])
+        
+        if mini>int(lista[1]) :
+            mini=int(lista[1])
+        
+        control_init=control_init+1
+            
+            
+    list_tupla.append((key,mini,maxi))
+            
+    """   
+            """
+        
+ 
+            
+            
+    return list_tupla
 
 
 def pregunta_07():
@@ -149,7 +311,30 @@ def pregunta_07():
     ]
 
     """
-    return
+    list_n_l=[]
+    lista_no=[]
+    for lista in data:
+        list_n_l.append([lista[1], lista[0]])
+        if (lista[1] not in lista_no):
+            lista_no.append(lista[1])
+            
+    lista_no.sort()
+    
+    list_letters=[]
+ 
+    tuple_list=[]
+    
+    for numero in lista_no:
+        for lista in list_n_l:
+            if numero==lista[0]:
+                list_letters.append(lista[1])
+            
+        tuple_list.append((int(numero),list_letters))
+        list_letters=[]
+    
+      
+    
+    return tuple_list
 
 
 def pregunta_08():
@@ -174,7 +359,30 @@ def pregunta_08():
     ]
 
     """
-    return
+    list_n_l=[]
+    lista_no=[]
+    for lista in data:
+        list_n_l.append([lista[1], lista[0]])
+        if (lista[1] not in lista_no):
+            lista_no.append(lista[1])
+            
+    lista_no.sort()
+    
+    list_letters=[]
+ 
+    tuple_list=[]
+    
+    for numero in lista_no:
+        for lista in list_n_l:
+            if numero==lista[0] and lista[1] not in list_letters:
+                list_letters.append(lista[1])
+           
+        list_letters.sort()
+        tuple_list.append((int(numero),list_letters))
+        list_letters=[]
+    
+    
+    return tuple_list
 
 
 def pregunta_09():
@@ -197,7 +405,34 @@ def pregunta_09():
     }
 
     """
-    return
+    dict_list=[]
+    
+    for lista in data:
+        crrt_lista=lista[4].split(',')
+        for element in crrt_lista:
+            dict_list.append(element.split(':'))
+     
+    dict_list.sort()
+    key=dict_list[0][0]
+    
+    mini=0
+    maxi=0
+    suma=0
+    control_init=0
+    claves={}
+    key=dict_list[0][0]
+    for lista in dict_list:
+        if lista[0]==key:
+            suma=suma+1
+            claves[key]=suma
+        
+        elif lista[0]!=key:
+            suma=1
+            key=lista[0]
+            claves[key]=suma
+        
+    
+    return claves
 
 
 def pregunta_10():
@@ -218,7 +453,15 @@ def pregunta_10():
 
 
     """
-    return
+    list_tupla=[]
+    for lista in data:
+        letter=lista[0]
+        long_4=len(lista[3].split(','))
+        long_5=len(lista[4].split(','))
+        list_tupla.append((letter,long_4,long_5))
+        
+    
+    return list_tupla
 
 
 def pregunta_11():
@@ -239,7 +482,28 @@ def pregunta_11():
 
 
     """
-    return
+    
+    letter_list=[]
+    for lista in data:
+        for l in lista[3].split(','):
+            if l not in letter_list:
+                letter_list.append(l)
+    
+    letter_list.sort()
+    dicc={}
+    suma=0
+    
+    for letter in letter_list:
+        for lista in data:
+            if letter in lista[3]:
+                suma=suma+int(lista[1])
+                
+        dicc[letter]=suma
+        suma=0
+            
+    
+        
+    return dicc
 
 
 def pregunta_12():
@@ -257,4 +521,31 @@ def pregunta_12():
     }
 
     """
-    return
+    
+    list_val=[]
+    for lista in data:
+        parts=lista[4].split(',')
+        numbers=[]
+        for parte in parts:
+            numbers.append(int(parte.split(':')[1]))
+        
+        suma=sum(numbers)
+            
+            
+        list_val.append([lista[0],suma])
+        
+    
+    list_val.sort()
+   
+    dicc={}
+    letter=''
+    for key in list_val:
+        if letter!=key[0]:
+            letter=key[0]
+            dicc[key[0]]=key[1]
+        else:
+            dicc[key[0]]=dicc[key[0]]+key[1]
+     
+            
+        
+    return dicc
