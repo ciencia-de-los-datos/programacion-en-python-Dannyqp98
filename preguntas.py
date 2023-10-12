@@ -71,7 +71,7 @@ def pregunta_02():
     letter_set=set(letter_list)
     unique_list=(list(letter_set))
     unique_list.sort()
-    
+    #rev
     tupple_list=[]
     for letter in unique_list:
         tupple=(letter,letter_list.count(letter))
